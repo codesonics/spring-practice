@@ -2,17 +2,21 @@ package kr.codesonics.oop.service;
 
 import kr.codesonics.oop.logic.JavaSort;
 import kr.codesonics.oop.logic.Sort;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SortService {
-    private final Sort<Integer> sort;
 
-    public SortService(Sort<Integer> sort) {
+    private final Sort<String> sort;
+
+    public SortService(@Qualifier(value = "javaSort") Sort<String> sort) {
         this.sort = sort;
     }
 
-    public List<Integer> doSort(List<Integer> list) {
+    public List<String> doSort(List<String> list) {
 
         return sort.sort(list);
     }
